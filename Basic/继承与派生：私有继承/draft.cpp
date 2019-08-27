@@ -23,16 +23,18 @@ private:
 };
 
 
-class Student1:public Student
+class Student1:private Student
 {
 public:
 	void get_value_1()
 	{
+		get_value();
 		cin >> age >> addr;
 	}
 
 	void display_1()
 	{
+		display();
 		cout << " age: " << age << endl;
 		cout << " address: " << addr << endl;
 	}
@@ -44,4 +46,6 @@ private:
 
 
 int main()
-{}
+{
+	Student1 stu1;
+}
