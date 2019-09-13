@@ -1,22 +1,30 @@
-template<class elemType>
+#ifndef SQLIST_H
+#define SQLIST_H
+
+#define DEFAULT_SIZE 10;
+
+template<class ElemType>
 class SqList
 {
 protected:
 	int count;
 	int maxSize;
-	elemType * elems;
+	ElemType * elems;
 
 public:
 	SqList(int size = DEFAULT_SIZE);
-	virtual~SqList(){};
+	virtual~SqList();
 	int Length() const;
 	bool Empty() const;
 	void Clear();
-	void Traverse(void( * visit)(const elemType &));
-	bool GetElem(int position, elemType &e)const;
-	bool SetElem(int position, const elemType &e);
-	bool Delete(int position, elemType &e);
-	bool Insert(int position, const elemType &e);
-	SqList(const SqList<elemType> &copy);
-	SqList&operator=(const SqList<elemType>&copy);
+	void Traverse(void( * visit)(const ElemType &)) const;
+	bool GetElem(int position, ElemType &e)const;
+	bool SetElem(int position, const ElemType &e);
+	bool Delete(int position, ElemType &e);
+	bool Insert(int position, const ElemType &e);
+	SqList(const SqList<ElemType> &copy);
+	SqList&operator=(const SqList<ElemType>&copy);
 };
+
+
+#endif;
