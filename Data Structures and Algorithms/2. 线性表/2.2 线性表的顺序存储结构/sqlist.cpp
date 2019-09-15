@@ -8,7 +8,7 @@ SqList<ElemType>::SqList(int size)
 {
 	maxSize = size;
 	elems = new ElemType[maxSize];
-	count = 0;
+	count = maxSize;
 }
 
 template<class ElemType>
@@ -32,6 +32,7 @@ bool SqList<ElemType>::Empty() const
 template<class ElemType>
 void SqList<ElemType>::Clear()
 {
+	delete[] elems;
 	count = 0;
 }
 
@@ -71,6 +72,7 @@ bool SqList<ElemType>::SetElem(int position, const ElemType &e)
 		elems[position - 1] = e;
 		return true;
 	}
+
 }
 
 template<class ElemType>
@@ -118,4 +120,18 @@ bool SqList<ElemType>::Delete(int position, ElemType &e)
 	}
 
 
+}
+
+
+int main()
+{
+	int foo = 100;
+	SqList<int> thisSqlist(8);
+	cout << "length:" << thisSqlist.Length() << endl;
+	thisSqlist.SetElem(1, foo);
+
+	cout << thisSqlist.elems[0] << endl;
+	cout << "length:" << thisSqlist.Length() << endl;
+	system("pause");
+	return 0;
 }

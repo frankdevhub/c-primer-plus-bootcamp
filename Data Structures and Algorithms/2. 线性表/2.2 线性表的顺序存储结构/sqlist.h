@@ -1,19 +1,19 @@
 #ifndef SQLIST_H
 #define SQLIST_H
 
-#define DEFAULT_SIZE 10;
+#define DEFAULT_SIZE 20
 
 template<class ElemType>
 class SqList
 {
-protected:
+public:
 	int count;
 	int maxSize;
 	ElemType * elems;
 
 public:
-	SqList(int size = DEFAULT_SIZE);
-	virtual~SqList();
+	SqList(int size  = DEFAULT_SIZE);
+	virtual ~SqList();
 	int Length() const;
 	bool Empty() const;
 	void Clear();
@@ -25,6 +25,5 @@ public:
 	SqList(const SqList<ElemType> &copy);
 	SqList&operator=(const SqList<ElemType>&copy);
 };
-
 
 #endif;
