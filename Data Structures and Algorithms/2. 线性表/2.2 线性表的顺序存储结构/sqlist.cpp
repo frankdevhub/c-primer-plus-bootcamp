@@ -122,6 +122,10 @@ bool SqList<ElemType>::Delete(int position, ElemType &e)
 
 }
 
+void Traverse(const int &num){
+	cout << "Traverse:" << num << endl;
+}
+
 
 int main()
 {
@@ -131,6 +135,7 @@ int main()
 	thisSqlist.SetElem(1, foo);
 
 	cout << thisSqlist.elems[0] << endl;
+	thisSqlist.Traverse(Traverse);
 	cout << "length:" << thisSqlist.Length() << endl;
 	system("pause");
 	return 0;
