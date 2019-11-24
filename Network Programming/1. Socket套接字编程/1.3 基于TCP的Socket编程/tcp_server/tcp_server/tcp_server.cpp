@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<windows.h>
 #include<winsock2.h>
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma comment(lib,"WS2_32.lib") //显式连接套接字
 
 int main()
@@ -15,18 +16,18 @@ int main()
 	int n = sizeof(addr2); //获取套接字地址结构大小
 	addr.sin_family = AF_INET; //初始化套接字地址结构
 	addr.sin_port = htons(8972);
-	addr.sin_addr.S_un.S_addr = INADDR_ANY;
-
+	addr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
+	addr.sin_addr.s_addr = inet_addr("127.0.0.1");  ///服务器ip
 	::bind(s, (sockaddr*)&addr, sizeof(addr)); //绑定套接字
 	::listen(s, 5); //监听套接字
-	printf("服务器已启动\r\n");
+	printf_s("服务器已启动\r\n");
 
 	while (true)
 	{
 		s1 = ::accept(s, (sockaddr*)&addr2, &n); //接受连接请求
 		if (s1 = NULL)
 		{
-			printf("%客户端已连接上\r\n", inet_ntoa(addr2.sin_addr));
+			printf_s("%客户端已连接上\r\n", inet_ntoa(addr2.sin_addr));
 			::send(s1, scztext, sizeof(scztext), 0); //向客户端发送字符数组
 		}
 		::closesocket(s);
