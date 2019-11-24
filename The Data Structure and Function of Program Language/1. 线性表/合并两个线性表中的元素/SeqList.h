@@ -26,7 +26,7 @@ int GetElem(SeqList L, int i, DataType *e)
 	//查找线性表中第n个元素，如果查找成功把值传递给e返回1，如果失败则返回-1
 	if (i<1 || i>L.length)
 		return -1;
-	*e = L.list[L.length - 1];
+	*e = L.list[i - 1];
 	return 1;
 }
 //按内容查找
