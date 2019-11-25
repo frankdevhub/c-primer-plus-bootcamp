@@ -19,18 +19,18 @@ class CAboutDlg : public CDialog
 public:
 	CAboutDlg();
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 protected:
 	//{{AFX_MSG(CAboutDlg)
 	//}}AFX_MSG
@@ -54,7 +54,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
+	// No message handlers
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &CAboutDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
@@ -66,7 +66,7 @@ CDeviceVolumeDlg::CDeviceVolumeDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CDeviceVolumeDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CDeviceVolumeDlg)
-		// NOTE: the ClassWizard will add member initialization here
+	// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -119,10 +119,10 @@ BOOL CDeviceVolumeDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	
+
 	m_disklist.SetExtendedStyle(LVS_EX_GRIDLINES);
-	m_disklist.InsertColumn(0,"逻辑分区",LVCFMT_LEFT,70);
-	m_disklist.InsertColumn(1,"卷标",LVCFMT_LEFT,70);
+	m_disklist.InsertColumn(0, "逻辑分区", LVCFMT_LEFT, 70);
+	m_disklist.InsertColumn(1, "卷标", LVCFMT_LEFT, 70);
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -143,13 +143,13 @@ void CDeviceVolumeDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CDeviceVolumeDlg::OnPaint() 
+void CDeviceVolumeDlg::OnPaint()
 {
 	if (IsIconic())
 	{
 		CPaintDC dc(this); // device context for painting
 
-		SendMessage(WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0);
+		SendMessage(WM_ICONERASEBKGND, (WPARAM)dc.GetSafeHdc(), 0);
 
 		// Center icon in client rectangle
 		int cxIcon = GetSystemMetrics(SM_CXICON);
@@ -172,42 +172,43 @@ void CDeviceVolumeDlg::OnPaint()
 //  the minimized window.
 HCURSOR CDeviceVolumeDlg::OnQueryDragIcon()
 {
-	return (HCURSOR) m_hIcon;
+	return (HCURSOR)m_hIcon;
 }
 
-void CDeviceVolumeDlg::OnGet() 
+void CDeviceVolumeDlg::OnGet()
 {
 	DWORD size;
-	size=::GetLogicalDriveStrings(0,NULL);
-	if(size!=0)
+	size = ::GetLogicalDriveStrings(0, NULL);
+	if (size != 0)
 	{
-		HANDLE heap=::GetProcessHeap();
-		LPSTR lp=(LPSTR)HeapAlloc(heap,HEAP_ZERO_MEMORY,size*sizeof(TCHAR));
-		::GetLogicalDriveStrings(size*sizeof(TCHAR),lp);
-		while(*lp!=0)
+		HANDLE heap = ::GetProcessHeap();
+		LPSTR lp = (LPSTR)HeapAlloc(heap, HEAP_ZERO_MEMORY, size*sizeof(TCHAR));
+		::GetLogicalDriveStrings(size*sizeof(TCHAR), lp);
+		while (*lp != 0)
 		{
-			UINT res=::GetDriveType(lp);
-			if(res=DRIVE_FIXED)
-				m_disklist.InsertItem(0,lp,0);
-			lp=_tcschr(lp,0)+1;
+			UINT res = ::GetDriveType(lp);
+			if (res = DRIVE_FIXED)
+				m_disklist.InsertItem(0, lp, 0);
+			lp = _tcschr(lp, 0) + 1;
+			printf(lp);
 		}
 	}
-	LPTSTR namebuf=new char[12];
-	DWORD namesize=12;
+	LPTSTR namebuf = new char[12];
+	DWORD namesize = 12;
 	DWORD serialnumber;
 	DWORD maxlen;
 	DWORD fileflag;
-	LPTSTR sysnamebuf=new char[10];
-	DWORD sysnamesize=10;
-	int num=m_disklist.GetItemCount();
-	for(int i=0;i<num;i++)
+	LPTSTR sysnamebuf = new char[10];
+	DWORD sysnamesize = 10;
+	int num = m_disklist.GetItemCount();
+	for (int i = 0; i<num; i++)
 	{
-		CString str,temp;
-		str=m_disklist.GetItemText(i,0);
-		::GetVolumeInformation(str,namebuf,namesize,&serialnumber,&maxlen,&fileflag,
-			sysnamebuf,sysnamesize);
-		temp.Format("%s",namebuf);
-		m_disklist.SetItemText(i,1,temp);
+		CString str, temp;
+		str = m_disklist.GetItemText(i, 0);
+		::GetVolumeInformation(str, namebuf, namesize, &serialnumber, &maxlen, &fileflag,
+			sysnamebuf, sysnamesize);
+		temp.Format("%s", namebuf);
+		m_disklist.SetItemText(i, 1, temp);
 	}
 }
 

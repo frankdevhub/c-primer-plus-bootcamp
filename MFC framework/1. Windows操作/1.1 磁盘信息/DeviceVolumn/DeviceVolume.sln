@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeviceVolume", "DeviceVolume.vcxproj", "{8D99575C-5102-49CD-9530-3BE9FD70D65F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeviceVolume", "DeviceVolume.vcxproj", "{0F5EF4FA-D039-4662-AD22-FBED70727150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8D99575C-5102-49CD-9530-3BE9FD70D65F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{8D99575C-5102-49CD-9530-3BE9FD70D65F}.Debug|Win32.Build.0 = Debug|Win32
-		{8D99575C-5102-49CD-9530-3BE9FD70D65F}.Release|Win32.ActiveCfg = Release|Win32
-		{8D99575C-5102-49CD-9530-3BE9FD70D65F}.Release|Win32.Build.0 = Release|Win32
+		{0F5EF4FA-D039-4662-AD22-FBED70727150}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0F5EF4FA-D039-4662-AD22-FBED70727150}.Debug|Win32.Build.0 = Debug|Win32
+		{0F5EF4FA-D039-4662-AD22-FBED70727150}.Release|Win32.ActiveCfg = Release|Win32
+		{0F5EF4FA-D039-4662-AD22-FBED70727150}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
