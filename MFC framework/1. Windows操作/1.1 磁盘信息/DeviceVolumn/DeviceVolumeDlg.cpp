@@ -190,7 +190,6 @@ void CDeviceVolumeDlg::OnGet()
 			if (res = DRIVE_FIXED)
 				m_disklist.InsertItem(0, lp, 0);
 			lp = _tcschr(lp, 0) + 1;
-			printf(lp);
 		}
 	}
 	LPTSTR namebuf = new char[12];
