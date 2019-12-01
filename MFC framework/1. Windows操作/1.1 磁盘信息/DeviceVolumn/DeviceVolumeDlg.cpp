@@ -200,7 +200,7 @@ void CDeviceVolumeDlg::OnGet()
 	LPTSTR sysnamebuf = new char[10];
 	DWORD sysnamesize = 10;
 	int num = m_disklist.GetItemCount();
-	for (int i = 0; i<num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		CString str, temp;
 		str = m_disklist.GetItemText(i, 0);
