@@ -107,3 +107,55 @@ int InsertList(LinkList head, int i, DataType e)
 	return 1;
 }
 /*删除第i个结点*/
+int DeleteList(LinkList head, int i, DataType *e)
+/*删除单链表中的第i个位置的结点，删除成功返回1，删除失败返回0*/
+{
+	ListNode *pre, *p;
+	int j;
+	pre = head;
+	j = 0;
+	while (pre->next != NULL && pre->next->next != NULL && j < i - 1)
+		/*判断是否找到前驱结点*/
+	{
+		pre = pre->next;
+		j++;
+	}
+	if (j != i - 1) /*如果没有找到删除的位置，说明输入的删除位置错误*/
+	{
+		printf("删除位置有误");
+		return 0;
+	}
+	/*指针p指向单链表中的第i个结点，并将这个结点的数据域赋值给e*/
+	p = pre->next;
+	*e = p->data;
+	/*将前驱结点的指针指向要删除的结点的下一个指向的结点*/
+	pre->next = p->next;
+	free(p); /*释放指针p指向的结点*/
+	return 1;
+}
+/*求链表长度的操作*/
+int ListLength(LinkList head)
+{/*求链表的长度*/
+	ListNode *p;
+	int count = 0;
+	p = head;
+	while (p->next != NULL)
+	{
+		p = p->next;
+		count++;
+	}
+	return count;
+}
+/*销毁链表操作*/
+void DestoryList(LinkList head)
+{
+	/*销毁链表*/
+	ListNode *p, *q;
+	p = head;
+	while (p != NULL)
+	{
+		q = p;
+		p = p->next;
+		free(q);
+	}
+}
